@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-const { cats } = require('../data/cats');
+// const { cats } = require('../data/cats');
 
 describe('cats routes', () => {
   beforeEach(() => {
@@ -12,9 +12,18 @@ describe('cats routes', () => {
 
   it('/cats should return a list of cats', async () => {
     const res = await request(app).get('/cats');
-    const expected = cats.map((cat) => {
-      return { id: cat.id, name: cat.name };
-    });
+    console.log(res.body);
+    const expected = [
+      { id: '1', name: 'Felix' },
+      { id: '2', name: 'Garfield' },
+      { id: '3', name: 'Duchess' },
+      { id: '4', name: 'Stimpy' },
+      { id: '5', name: 'Sylvester' },
+      { id: '6', name: 'Tigger' },
+      { id: '7', name: 'Hello Kitty' },
+      { id: '8', name: 'Hobbes' }
+    ]
+    
     expect(res.body).toEqual(expected);
   });
 
